@@ -1,0 +1,19 @@
+{
+  "name": "geotrip",
+  "version": "1.0.0",
+  "description": "app to display and animate geotag photo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "geotag",
+    "photo",
+    "exif"
+  ],
+  "author": "alex2wong",
+  "license": "ISC",
+  "dependencies": {
+    "exif-js": "^2.3.0"
+  }
+}

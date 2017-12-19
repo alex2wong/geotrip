@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>testGeoPhoto</title>
+    <style media="screen">
+      img {
+        height: 200px;
+        width: auto;
+      }
+      body {
+        font-family: 'Microsoft Yahei' sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="./node_modules/exif-js/exif.js">
+    </script>
+    <script type="text/javascript">
+      function getExif(img1) {
+        EXIF.getData(img1, function() {
+            var make = EXIF.getTag(this, "Make");
+            var model = EXIF.getTag(this, "Model");
+            var time = EXIF.getTag(this, "DateTimeOriginal");
+            var lat = EXIF.getTag(this, "GPSLatitude");
+            var long = EXIF.getTag(this, "GPSLongitude");
+            if (lat instanceof Array) {
+              lat = `${lat[0]}.${lat[1]}`
+            }
+            if (long instanceof Array) {
+              long = `${long[0]}.${long[1]}`
+            }
+
+            var makeAndModel = document.getElementById("makeAndModel");
+            makeAndModel.innerHTML = `${make} ${model} <br/>
+              timeOriginal: ${time} <br/>
+              lat: ${lat}, long: ${long}`;
+          });
+      }
+    </script>
+
+    <img src="./geotest.jpg" alt="geotest.jpg" id="img1" onload='getExif(this);'>
+    <p>Make and model:<br/>
+      <span id="makeAndModel"></span></p>
+      <br/>
+  </body>
+</html>
